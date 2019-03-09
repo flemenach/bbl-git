@@ -1,49 +1,204 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>reveal.js</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/custom.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          ### Fondamentaux git
+          - Les bases (graph, id de commit, branches et repo)
+          - Mettre à jour son workspace (fetch, pull)
+          - Pousser son code (commit, cherry-pick, push)
+          - Mettre à jour une branche (merge, rebase)
+          - Résoudre les conflits
+          - Git avancé ? (rebase -i, amend, fixup, reflog, ...)
+        </section>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+        <section>
+          <h3>Le graph git (au cas où)</h3>
+          <div style="width: 45%; float: left">
+            <span>En théorie</span>
+            <canvas id="graph-exemple"></canvas>
+          </div>
+          <div style="width: 45%; float: left">
+            <span style="display: block">En pratique</span>
+            <img height="500px" src="images/git-graph-guitar-hero.png" />
+          </div>
+        </section>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+        <section data-transition="fade-out slide-in">
+          <h3>Quelques perles</h3>
+          <img height="500px" src="images/graph-pourri-1.png" />
+        </section>
+
+        <section data-transition="fade-in fade-out">
+          <h3>Quelques perles</h3>
+          <img height="500px" src="images/graph-pourri-3.png" />
+        </section>
+
+        <section data-transition="fade-in fade-out">
+          <h3>Quelques perles</h3>
+          <img height="500px" src="images/graph-pourri-4.png" />
+        </section>
+
+        <section data-transition="fade-in slide-out">
+          <h3>Quelques perles</h3>
+          <img height="500px" src="images/graph-pourri-2.png" />
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ### L'id de commit
+            - sha1  <!-- .element: class="fragment" data-fragment-index="1" -->
+              - message de commit <!-- .element: class="fragment" data-fragment-index="2" -->
+              - Auteur <!-- .element: class="fragment" data-fragment-index="2" -->
+              - Commiteur <!-- .element: class="fragment" data-fragment-index="2" -->
+              - Date de commit <!-- .element: class="fragment" data-fragment-index="2" -->
+              - Hash du projet <!-- .element: class="fragment" data-fragment-index="2" -->
+              - sha1 du/des précédent(s) commit(s) <!-- .element: class="fragment" data-fragment-index="2" -->
+          </script>
+        </section>
+
+        <section>
+          <h3 style="width: 100%; text-decoration: underline">Branches et repos</h3>
+          <div class="zone">
+            <span style="font-style: italic; text-decoration: underline">Repo distant (origin)</span>
+            <div style="padding-top: 25px;">
+              <span class="zone-column">master</span>
+              <span  class="zone-column">branch1</span>
+              <span  class="zone-column">branch2</span>
+            </div>
+          </div>
+          <div class="zone" style="margin-top: 10px">
+            <h6 style="font-style: italic">Local</h6>
+            <div style="padding-top: 25px;">
+              <span  class="zone-column">origin/master</span>
+              <span  class="zone-column">origin/branch1</span>
+              <span  class="zone-column">origin/branch2</span>
+            </div>
+            <div style="padding-top: 25px;">
+              <span  class="zone-column">master</span>
+              <span  class="zone-column">branch1</span>
+              <span  class="zone-column">branch2</span>
+            </div>
+          </div>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## git fetch
+            - Repo distant (origin) <!-- .element: class="fragment" data-fragment-index="1" -->
+            - branche "origin/MY_BRANCH" <!-- .element: class="fragment" data-fragment-index="1" -->
+            - branche "MY_BRANCH" <!-- .element: class="fragment" data-fragment-index="1" -->
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Branches
+            - Pointeur sur Commit
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Branches
+            - Pointeur sur Commit
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Branches
+            - Pointeur sur Commit
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Branches
+            - Pointeur sur Commit
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Branches
+            - Pointeur sur Commit
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Branches
+            - Pointeur sur Commit
+          </script>
+        </section>
+        <section></section>
+        <section>
+            Default
+            <div>	<canvas id="graph2"></canvas></div>
+          </section>
+        <section data-markdown>
+          <!-- <textarea data-template>
+            ## Page title
+
+            A paragraph with some text.
+          </textarea> -->
+          <!-- <canvas id="graph2"></canvas> -->
+        </section>
+
+
+
+        <section data-markdown>
+            <script type="text/template">
+              ## Rappel sur le commit
+              Le hash est créé à partir <!-- .element: class="fragment" data-fragment-index="1" -->
+
+              - De l'auteur <!-- .element: class="fragment" data-fragment-index="2" -->
+              - Du commiteur <!-- .element: class="fragment" data-fragment-index="2" -->
+              - De la date de commit <!-- .element: class="fragment" data-fragment-index="2" -->
+              - Du message de commit <!-- .element: class="fragment" data-fragment-index="2" -->
+              - Du sha1 du/des parent(s) <!-- .element: class="fragment" data-fragment-index="2" -->
+            </script>
+          </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script src="node_modules/gitgraph.js/build/gitgraph.min.js"></script>
+    <script src="js/graphs/graph-exemple.js"></script>
+    <!-- <script src="js/graphs/commit.js"></script> -->
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
 </html>
