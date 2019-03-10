@@ -105,79 +105,107 @@
           </div>
         </section>
 
-        <section data-markdown>
-          <script type="text/template">
-            ## git fetch
-            - Repo distant (origin) <!-- .element: class="fragment" data-fragment-index="1" -->
-            - branche "origin/MY_BRANCH" <!-- .element: class="fragment" data-fragment-index="1" -->
-            - branche "MY_BRANCH" <!-- .element: class="fragment" data-fragment-index="1" -->
-          </script>
+        <section data-transition="fade-out slide-in">
+          <h3 style="width: 100%; text-decoration: underline">git fetch</h3>
+          (avant)
+          <div class="zone">
+            <span style="font-style: italic; text-decoration: underline">Repo distant (origin)</span>
+            <div style="padding-top: 25px;">
+              <span class="zone-column col-blue"><b>master<br /><i>commit E</i></b></span>
+              <span class="zone-column col-blue"><b>branch1<br /><i>commit F</i></b></span>
+              <span class="zone-column col-blue"><b>branch2<br /><i>commit G</i></b></span>
+            </div>
+          </div>
+          <div class="zone" style="margin-top: 10px">
+            <h6 style="font-style: italic">Local</h6>
+            <div style="padding-top: 25px;">
+              <span class="zone-column col-green"><b>origin/master<br /><i>commit A</i></b></span>
+              <span class="zone-column col-green"><b>origin/branch1<br /><i>commit B</i></b></span>
+              <span class="zone-column col-purple"><b>origin/branch2<br /><i>commit C</i></b></span>
+            </div>
+            <div style="padding-top: 25px;">
+              <span class="zone-column col-green"><b>master<br /><i>commit A</i></b></span>
+              <span class="zone-column col-green"><b>branch1<br /><i>commit B</i></b></span>
+              <span class="zone-column col-green"><b>branch2<br /><i>commit D</i></b></span>
+            </div>
+          </div>
         </section>
 
-        <section data-markdown>
-          <script type="text/template">
-            ## Branches
-            - Pointeur sur Commit
-          </script>
-        </section>
-        <section data-markdown>
-          <script type="text/template">
-            ## Branches
-            - Pointeur sur Commit
-          </script>
-        </section>
-        <section data-markdown>
-          <script type="text/template">
-            ## Branches
-            - Pointeur sur Commit
-          </script>
-        </section>
-        <section data-markdown>
-          <script type="text/template">
-            ## Branches
-            - Pointeur sur Commit
-          </script>
-        </section>
-        <section data-markdown>
-          <script type="text/template">
-            ## Branches
-            - Pointeur sur Commit
-          </script>
-        </section>
-        <section data-markdown>
-          <script type="text/template">
-            ## Branches
-            - Pointeur sur Commit
-          </script>
-        </section>
-        <section></section>
-        <section>
-            Default
-            <div>	<canvas id="graph2"></canvas></div>
-          </section>
-        <section data-markdown>
-          <!-- <textarea data-template>
-            ## Page title
-
-            A paragraph with some text.
-          </textarea> -->
-          <!-- <canvas id="graph2"></canvas> -->
+        <section data-transition="fade-in slide-out">
+          <h3 style="width: 100%; text-decoration: underline">git fetch</h3>
+          (après)
+          <div class="zone">
+            <span style="font-style: italic; text-decoration: underline">Repo distant (origin)</span>
+            <div style="padding-top: 25px;">
+              <span class="zone-column col-blue"><b>master<br /><i>commit E</i></b></span>
+              <span class="zone-column col-blue"><b>branch1<br /><i>commit F</i></b></span>
+              <span class="zone-column col-blue"><b>branch2<br /><i>commit G</i></b></span>
+            </div>
+          </div>
+          <div class="zone" style="margin-top: 10px">
+            <h6 style="font-style: italic">Local</h6>
+            <div style="padding-top: 25px;">
+              <span class="zone-column col-blue"><b>origin/master<br /><i>commit E</i></b></span>
+              <span class="zone-column col-blue"><b>origin/branch1<br /><i>commit F</i></b></span>
+              <span class="zone-column col-blue"><b>origin/branch2<br /><i>commit G</i></b></span>
+            </div>
+            <div style="padding-top: 25px;">
+              <span class="zone-column col-green"><b>master<br /><i>commit A</i></b></span>
+              <span class="zone-column col-green"><b>branch1<br /><i>commit B</i></b></span>
+              <span class="zone-column col-green"><b>branch2<br /><i>commit D</i></b></span>
+            </div>
+          </div>
         </section>
 
+        <section data-transition="fade-out slide-in">
+          <h3 style="width: 100%; text-decoration: underline">git pull (git fetch + git merge)</h3>
+          <div class="zone">
+            <span style="font-style: italic; text-decoration: underline">Repo distant (origin)</span>
+            <div style="padding-top: 25px;">
+              <span class="zone-column col-blue"><b>master<br /><i>commit E</i></b></span>
+              <span class="zone-column col-blue"><b>branch1<br /><i>commit F</i></b></span>
+              <span class="zone-column col-blue"><b>branch2<br /><i>commit G</i></b></span>
+            </div>
+          </div>
+          <div class="zone" style="margin-top: 10px">
+            <h6 style="font-style: italic">Local</h6>
+            <div style="padding-top: 25px;">
+              <span class="zone-column col-green"><b>origin/master<br /><i>commit A</i></b></span>
+              <span class="zone-column col-green"><b>origin/branch1<br /><i>commit B</i></b></span>
+              <span class="zone-column col-purple"><b>origin/branch2<br /><i>commit C</i></b></span>
+            </div>
+            <div style="padding-top: 25px;">
+              <span class="zone-column col-green"><b>master<br /><i>commit A</i></b></span>
+              <span class="zone-column col-green"><b>branch1 *<br /><i>commit B</i></b></span>
+              <span class="zone-column col-green"><b>branch2<br /><i>commit D</i></b></span>
+            </div>
+          </div>
+        </section>
 
-
-        <section data-markdown>
-            <script type="text/template">
-              ## Rappel sur le commit
-              Le hash est créé à partir <!-- .element: class="fragment" data-fragment-index="1" -->
-
-              - De l'auteur <!-- .element: class="fragment" data-fragment-index="2" -->
-              - Du commiteur <!-- .element: class="fragment" data-fragment-index="2" -->
-              - De la date de commit <!-- .element: class="fragment" data-fragment-index="2" -->
-              - Du message de commit <!-- .element: class="fragment" data-fragment-index="2" -->
-              - Du sha1 du/des parent(s) <!-- .element: class="fragment" data-fragment-index="2" -->
-            </script>
-          </section>
+        <section data-transition="fade-in slide-out">
+          <h3 style="width: 100%; text-decoration: underline">git pull (git fetch + git merge)</h3>
+          <div class="zone">
+            <span style="font-style: italic; text-decoration: underline">Repo distant (origin)</span>
+            <div style="padding-top: 25px;">
+              <span class="zone-column col-blue"><b>master<br /><i>commit E</i></b></span>
+              <span class="zone-column col-blue"><b>branch1<br /><i>commit F</i></b></span>
+              <span class="zone-column col-blue"><b>branch2<br /><i>commit G</i></b></span>
+            </div>
+          </div>
+          <div class="zone" style="margin-top: 10px">
+            <h6 style="font-style: italic">Local</h6>
+            <div style="padding-top: 25px;">
+              <span class="zone-column col-blue"><b>origin/master<br /><i>commit E</i></b></span>
+              <span class="zone-column col-blue"><b>origin/branch1<br /><i>commit F</i></b></span>
+              <span class="zone-column col-blue"><b>origin/branch2<br /><i>commit G</i></b></span>
+            </div>
+            <div style="padding-top: 25px;">
+              <span class="zone-column col-green"><b>master<br /><i>commit A</i></b></span>
+              <span class="zone-column col-blue"><b>branch1 *<br /><i>commit F</i></b></span>
+              <span class="zone-column col-green"><b>branch2<br /><i>commit D</i></b></span>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
 

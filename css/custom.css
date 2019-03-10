@@ -23,3 +23,8 @@
   display: inline-block;
   width: 24%
 }
+
+
+.reveal .col-blue i { color: blue;}
+.reveal .col-purple i { color: purple;}
+.reveal .col-green i { color: green;}
