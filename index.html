@@ -29,10 +29,11 @@
           ### Fondamentaux git
           - Les bases (graph, id de commit, branches et repo)
           - Mettre à jour son workspace (fetch, pull)
-          - Pousser son code (commit, cherry-pick, push)
+          - Pousser ses modifs (commit, push)
+          - Supprimer/annuler des commits (revert, reset)
           - Mettre à jour une branche (merge, rebase)
           - Résoudre les conflits
-          - Git avancé ? (rebase -i, amend, fixup, reflog, ...)
+          - Git avancé ? (cherry-pick, rebase -i, fixup, reflog, ...)
         </section>
 
         <section>
@@ -206,6 +207,158 @@
             </div>
           </div>
         </section>
+
+        <section>
+          <h3>git pull (sans commit local)</h3>
+          <div style="display: table; width: 100%;">
+            <div style="position: relative;  height: 450px;">
+              <div style="position: absolute; bottom: 0; left: 0;">
+                <canvas id="graph-pull-1-origin"></canvas>
+                <div>origin/branch1</div>
+              </div>
+              <div style="position: absolute; bottom: 0; left: 30%;">
+                <canvas id="graph-pull-1-local"></canvas>
+                <div>branch1</div>
+              </div>
+              <div style="position: absolute; bottom: 0; left: 60%;">
+                =>
+              </div>
+              <div style="position: absolute; bottom: 0; left: 75%;">
+                <canvas id="graph-pull-1-local-updated"></canvas>
+                <div>branch1</div>
+                </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>git pull (avec commit local)</h3>
+          <div style="display: table; width: 100%;">
+            <div style="position: relative;  height: 450px;">
+              <div style="position: absolute; bottom: 0; left: 0;">
+                <canvas id="graph-pull-2-origin"></canvas>
+                <div>origin/branch1</div>
+              </div>
+              <div style="position: absolute; bottom: 0; left: 30%;">
+                <canvas id="graph-pull-2-local"></canvas>
+                <div>branch1</div>
+              </div>
+              <div style="position: absolute; bottom: 0; left: 60%;">
+                =>
+              </div>
+              <div style="position: absolute; bottom: 0; left: 75%;">
+                <canvas id="graph-pull-2-local-updated"></canvas>
+                <div>branch1</div>
+                </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>git pull --rebase</h3>
+          <div style="display: table; width: 100%;">
+            <div style="position: relative;  height: 450px;">
+              <div style="position: absolute; bottom: 0; left: 0;">
+                <canvas id="graph-pull-3-origin"></canvas>
+                <div>origin/branch1</div>
+              </div>
+              <div style="position: absolute; bottom: 0; left: 30%;">
+                <canvas id="graph-pull-3-local"></canvas>
+                <div>branch1</div>
+              </div>
+              <div style="position: absolute; bottom: 0; left: 60%;">
+                =>
+              </div>
+              <div style="position: absolute; bottom: 0; left: 75%;">
+                <canvas id="graph-pull-3-local-updated"></canvas>
+                <div>branch1</div>
+                </div>
+            </div>
+          </div>
+        </section>
+
+        <section data-markdown>
+          Toujours utiliser **git pull --rebase**
+
+          OU
+
+          configurer **rebase** par défaut :
+
+
+          **git config --global pull.rebase true**
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ### Pousser ses modifs
+            - git add  <!-- .element: class="fragment" data-fragment-index="1" -->
+            - git commit <!-- .element: class="fragment" data-fragment-index="1" -->
+            - git push <!-- .element: class="fragment" data-fragment-index="1" -->
+            - git commit --amend <!-- .element: class="fragment" data-fragment-index="1" -->
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ### git add
+            Stage les modifications pour le prochain commit
+            - **git add [file1] [file2] [file3]** <i>Stage des fichiers</i>
+            - **git add [folder1] [folder2]** <i>Stage des répertoires et tous leurs enfants</i>
+            - **git add .** <i>Stage tous les fichiers/répertoires depuis la racine</i>
+            - **git add -p [file]** <i>Stage partiel d'un fichier</i>
+            - **git reset [file1] [file2]** <i>Unstage un ou des fichiers</i>
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ### git commit
+            Stocke dans un commit les modifications indexées
+            - **git commit -m '[message]'** <i>// ajoute un message de commit</i>
+            - **git commit -a**             <i>// stage tous les fichiers modifiés</i>
+            - **git commit --amend**        <i>// modifie le dernier commit</i>
+            - **git commit --fixup [commit]** <i>// modifie un précédent commit</i>
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ### git push
+            met à jour la branche "origin/*" et le repo distant
+            - **git push** == **git push origin [branch name]**
+            - **git push --force** <i>// écrase la branche distante avec la branche locale</i>
+            - **git push --force-with-lease** <i>// comme push --force, mais vérifie d'abord si un autre commit n'a pas été poussé sur le repo distant</i>
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            push --force (ou --force-with-lease) est obligatoire pour réécrire
+            l'historique de la branche sur le repo distant.
+
+            Donc après :
+            - commit --amend
+            - rebase
+            - reset
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ### Supprimer/annuler des commits
+            Deux façons de faire :
+            - **git revert [commit]** <i>Crée un nouveau commit qui "inverse" le commit à supprimer</i>
+            - **git reset --soft [commit]** <i>Suprime les n derniers commits en conservant les modifications dans l'espace de travail</i>
+            - **git reset --hard [commit]** <i>Suprime les n derniers commits en conservant les modifications dans l'espace de travail</i>
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ### git reset
+          </script>
+        </section>
+
       </div>
     </div>
 
@@ -213,6 +366,9 @@
     <script src="js/reveal.js"></script>
     <script src="node_modules/gitgraph.js/build/gitgraph.min.js"></script>
     <script src="js/graphs/graph-exemple.js"></script>
+    <script src="js/graphs/graph-pull.js"></script>
+    <script src="js/graphs/graph-pull-merge.js"></script>
+    <script src="js/graphs/graph-pull-rebase.js"></script>
     <!-- <script src="js/graphs/commit.js"></script> -->
 
     <script>
