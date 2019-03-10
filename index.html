@@ -348,14 +348,14 @@
             ### Supprimer/annuler des commits
             Deux façons de faire :
             - **git revert [commit]** <i>Crée un nouveau commit qui "inverse" le commit à supprimer</i>
-            - **git reset --soft [commit]** <i>Suprime les n derniers commits en conservant les modifications dans l'espace de travail</i>
-            - **git reset --hard [commit]** <i>Suprime les n derniers commits en conservant les modifications dans l'espace de travail</i>
+            - **git reset --soft [commit]** <i>Fait pointer la branche actuelle sur le commit indiqué en conservant les modifications locales</i>
+            - **git reset --hard [commit]** <i>Même chose, mais efface l'index et les modifications locales</i>
           </script>
         </section>
 
         <section data-markdown>
           <script type="text/template">
-            ### git reset
+            ### Merge
           </script>
         </section>
 
