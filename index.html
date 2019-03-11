@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>reveal.js</title>
+    <title>Git fundamentals</title>
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/white.css">
@@ -284,7 +284,6 @@
 
           configurer **rebase** par défaut :
 
-
           **git config --global pull.rebase true**
         </section>
 
@@ -355,8 +354,32 @@
 
         <section data-markdown>
           <script type="text/template">
-            ### Merge
+            ### Mettre à jour une branche
           </script>
+        </section>
+
+        <section>
+          <h3>git merge</h3>
+          <div style="width: 38%; margin: auto">
+            <div style="text-align: left; height: 200px"><canvas id="graph-merge-1"></canvas></div>
+            <div style="text-align: left">
+              git checkout master
+              <br />git merge branch1
+            </div>
+            <div style="text-align: left; height: 200px"><canvas id="graph-merge-2"></canvas></div>
+          </div>
+        </section>
+
+        <section>
+          <h3>git merge --ff</h3>
+          <div style="width: 38%; margin: auto">
+            <div style="text-align: left; height: 200px"><canvas id="graph-merge-1"></canvas></div>
+            <div style="text-align: left">
+              git checkout master
+              <br />git merge branch1
+            </div>
+            <div style="text-align: left; height: 200px"><canvas id="graph-merge-2"></canvas></div>
+          </div>
         </section>
 
       </div>
@@ -369,6 +392,7 @@
     <script src="js/graphs/graph-pull.js"></script>
     <script src="js/graphs/graph-pull-merge.js"></script>
     <script src="js/graphs/graph-pull-rebase.js"></script>
+    <script src="js/graphs/graph-merge-1.js"></script>
     <!-- <script src="js/graphs/commit.js"></script> -->
 
     <script>
