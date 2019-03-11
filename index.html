@@ -363,22 +363,51 @@
           <div style="width: 38%; margin: auto">
             <div style="text-align: left; height: 200px"><canvas id="graph-merge-1"></canvas></div>
             <div style="text-align: left">
-              git checkout master
-              <br />git merge branch1
+              $ git checkout master
+              <br />$ git merge branch-1
             </div>
             <div style="text-align: left; height: 200px"><canvas id="graph-merge-2"></canvas></div>
           </div>
         </section>
 
         <section>
-          <h3>git merge --ff</h3>
+          <h3>git merge (fast-forward)</h3>
           <div style="width: 38%; margin: auto">
-            <div style="text-align: left; height: 200px"><canvas id="graph-merge-1"></canvas></div>
+            <div style="text-align: left; height: 200px"><canvas id="graph-merge-ff-1"></canvas></div>
             <div style="text-align: left">
-              git checkout master
-              <br />git merge branch1
+              $ git checkout master
+              <br />$ git merge branch-1
             </div>
-            <div style="text-align: left; height: 200px"><canvas id="graph-merge-2"></canvas></div>
+            <div style="text-align: left; height: 200px"><canvas id="graph-merge-ff-2"></canvas></div>
+          </div>
+        </section>
+
+        <section>
+          <h3>git merge (no-fast-forward)</h3>
+          <div style="width: 50%; margin: auto">
+            <div style="text-align: left; height: 200px"><canvas id="graph-merge-noff-1"></canvas></div>
+            <div style="text-align: left">
+              $ git checkout master
+              <br />$ git merge branch-1 --no-ff
+            </div>
+            <div style="text-align: left; height: 200px"><canvas id="graph-merge-noff-2"></canvas></div>
+          </div>
+        </section>
+
+        <section>
+            <h3>update une branche avec git merge</h3>
+            <canvas id="graph-merge-update"></canvas>
+          </section>
+
+        <section>
+          <h3>git rebase</h3>
+          <div style="width: 50%; margin: auto">
+            <div style="text-align: left; height: 200px"><canvas id="graph-rebase-1"></canvas></div>
+            <div style="text-align: left">
+              $ git checkout branch-1
+              <br />$ git rebase master
+            </div>
+            <div style="text-align: left; height: 200px"><canvas id="graph-rebase-2"></canvas></div>
           </div>
         </section>
 
@@ -393,7 +422,10 @@
     <script src="js/graphs/graph-pull-merge.js"></script>
     <script src="js/graphs/graph-pull-rebase.js"></script>
     <script src="js/graphs/graph-merge-1.js"></script>
-    <!-- <script src="js/graphs/commit.js"></script> -->
+    <script src="js/graphs/graph-merge-2.js"></script>
+    <script src="js/graphs/graph-merge-3.js"></script>
+    <script src="js/graphs/graph-merge-update.js"></script>
+    <script src="js/graphs/graph-rebase.js"></script>
 
     <script>
       // More info about config & dependencies:
